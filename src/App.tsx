@@ -2,6 +2,8 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { styled } from 'styled-components';
+import { Button } from "antd";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,11 +18,11 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <StyledLink isBlue={count > 4}>Vite + React</StyledLink>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <Button type='primary' onClick={() => setCount((count) => count + 1)}>
           count is {count}
-        </button>
+        </Button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
@@ -31,5 +33,15 @@ function App() {
     </>
   )
 }
+
+interface PStyledLink {
+  isBlue?: boolean;
+}
+
+const StyledLink = styled.div<PStyledLink>`
+  color: ${(props) => (props.isBlue ? 'blue' : 'pink')};
+  background: #ddffd5;
+`;
+
 
 export default App
